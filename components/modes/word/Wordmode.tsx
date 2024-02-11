@@ -1,18 +1,13 @@
 import React from 'react'
-import {
-	LetterBoxes,
-	LetterBox,
-	ButtonWrapper,
-	Button,
-} from '@/styles'
+import { LetterBoxes, LetterBox, ButtonWrapper, Button } from '@/styles'
 
 const WordsGame: React.FC<{
-    timeLeft: number,
-    letters: string,
-    inputWord: string,
-    setInputWord: (word: string) => void,
-    checkWord: () => void,
-    addLetter: (type: string) => void
+	timeLeft: number
+	letters: string
+	inputWord: string
+	setInputWord: (word: string) => void
+	checkWord: () => void
+	addLetter: (type: string) => void
 }> = ({ timeLeft, letters, inputWord, setInputWord, checkWord, addLetter }) => {
 	return (
 		<>

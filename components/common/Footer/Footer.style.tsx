@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
 	background-color: #f8f9fa;
