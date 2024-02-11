@@ -10,6 +10,7 @@ const IndexPage: React.FC = () => {
     const [letters, setLetters] = useState<string>('');
     const [inputWord, setInputWord] = useState<string>('');
     const [message, setMessage] = useState<string>('');
+    const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
     useEffect(() => {
         fetch('https://random-word-api.herokuapp.com/all')
@@ -28,6 +29,10 @@ const IndexPage: React.FC = () => {
             setCountdownInterval(null);
             setMessage('Time is up!');
             setInputWord('');
+            if (audio) {
+                audio.pause();
+                setAudio(null);
+            }
       }
   }, [timeLeft]);
   
@@ -80,6 +85,11 @@ const IndexPage: React.FC = () => {
             setTimeLeft(timeLeft => timeLeft - 1);
         }, 1000);
         setCountdownInterval(interval);
+
+        // play the audio!
+        const audio = new Audio('/clockonly.mp3');
+        audio.play();
+        setAudio(audio);
     }
 
     const canFormWordFromLetters = (word: string, letters: string) => {
