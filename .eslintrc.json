@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "next/babel", "@babel/preset-env"],
+  "extends": ["next/core-web-vitals", "next", "prettier"],
   "overrides": [
     {
       "files": ["tests/**/*"],
