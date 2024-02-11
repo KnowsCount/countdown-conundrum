@@ -73,10 +73,14 @@ const IndexPage: React.FC = () => {
         setInputWord('');
         setMessage('');
         setTimeLeft(30); 
-      if (countdownInterval) {
+        if (countdownInterval) {
             clearInterval(countdownInterval);
             setCountdownInterval(null);
-      }
+        }
+        if (audio) {
+            audio.pause();
+            setAudio(null);
+        }
     }
 
     const startCountdown = () => {
@@ -125,6 +129,10 @@ const IndexPage: React.FC = () => {
         if (countdownInterval) {
             clearInterval(countdownInterval);
             setCountdownInterval(null);
+        }
+        if (audio) {
+            audio.pause();
+            setAudio(null);
         }
         const longestWord = findLongestWord(letters);
         if (inputWord.length > letters.length) {
