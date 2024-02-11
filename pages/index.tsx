@@ -6,8 +6,8 @@ import {
 	ButtonWrapper,
 	Button,
 } from '@/styles'
-import Clock from '@/components/Clock'
-import Footer from '@/components/Footer'
+import { Clock } from '@/components/common/Clock'
+import { Footer } from '@/components/common/Footer'
 
 const IndexPage: React.FC = () => {
 	const [wordList, setWordList] = useState<string[]>([])
@@ -18,6 +18,13 @@ const IndexPage: React.FC = () => {
 	const [inputWord, setInputWord] = useState<string>('')
 	const [message, setMessage] = useState<string>('')
 	const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
+	// Add gameMode state
+	const [gameMode, setGameMode] = useState<string>('word')
+
+	// Add function to switch game mode
+	const switchGameMode = () => {
+		setGameMode(gameMode === 'word' ? 'numbers' : 'word')
+	}
 
 	useEffect(() => {
 		fetch('https://random-word-api.herokuapp.com/all')
@@ -168,34 +175,46 @@ const IndexPage: React.FC = () => {
 			<Clock timeLeft={timeLeft} />
 			<p>Time left: {timeLeft} seconds</p>
 			<h1>Countdown Conundrum</h1>
-			<LetterBoxes>
-				{Array(9)
-					.fill('')
-					.map((_, i) => (
-						<LetterBox key={i}>{letters[i] || ''}</LetterBox>
-					))}
-			</LetterBoxes>
-			<ButtonWrapper>
-				<Button onClick={() => addLetter('vowel')}>Add Vowel</Button>
-			</ButtonWrapper>
-			<ButtonWrapper>
-				<Button onClick={() => addLetter('consonant')}>
-					Add Consonant
-				</Button>
-			</ButtonWrapper>
-			<input
-				type="text"
-				value={inputWord}
-				onChange={(e) => setInputWord(e.target.value)}
-				placeholder="Enter your word here"
-			/>
-			<ButtonWrapper>
-				<Button onClick={checkWord} disabled={letters.length < 9}>
-					Submit
-				</Button>
-			</ButtonWrapper>
+			{gameMode === 'word' ? (
+				<>
+					<LetterBoxes>
+						{Array(9)
+							.fill('')
+							.map((_, i) => (
+								<LetterBox key={i}>{letters[i] || ''}</LetterBox>
+							))}
+					</LetterBoxes>
+					<ButtonWrapper>
+						<Button onClick={() => addLetter('vowel')}>Add Vowel</Button>
+					</ButtonWrapper>
+					<ButtonWrapper>
+						<Button onClick={() => addLetter('consonant')}>
+							Add Consonant
+						</Button>
+					</ButtonWrapper>
+					<input
+						type="text"
+						value={inputWord}
+						onChange={(e) => setInputWord(e.target.value)}
+						placeholder="Enter your word here"
+					/>
+					<ButtonWrapper>
+						<Button onClick={checkWord} disabled={letters.length < 9}>
+							Submit
+						</Button>
+					</ButtonWrapper>
+				</>
+			) : (
+				// TODO: Replace this with your numbers game component
+				<p>Numbers game goes here</p>
+			)}
 			<ButtonWrapper>
 				<Button onClick={playGame}>New Game</Button>
+			</ButtonWrapper>
+			<ButtonWrapper>
+				<Button onClick={switchGameMode}>
+					Switch to {gameMode === 'word' ? 'Numbers' : 'Word'} Mode
+				</Button>
 			</ButtonWrapper>
 			<p>{message}</p>
 			<Footer />
