@@ -1,34 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { MainContainer, LetterBoxes, LetterBox, ButtonWrapper, Button } from '@/styles';
 import Clock from '@/components/Clock';
-
-const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    height: 100vh;
-`;
-
-const LetterBoxes = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-`;
-
-const LetterBox = styled.div`
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    border: 1px solid transparent;
-`;
+import Footer from "@/components/Footer";
 
 const IndexPage: React.FC = () => {
     const [wordList, setWordList] = useState<string[]>([]);
@@ -48,13 +21,13 @@ const IndexPage: React.FC = () => {
 
     useEffect(() => {
       if (timeLeft > 0 && countdownInterval) {
-          const id = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-          return () => clearTimeout(id);
+            const id = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+            return () => clearTimeout(id);
       } else if (timeLeft <= 0 && countdownInterval) {
-          clearInterval(countdownInterval);
-          setCountdownInterval(null);
-          setMessage('Time is up!');
-          setInputWord('');
+            clearInterval(countdownInterval);
+            setCountdownInterval(null);
+            setMessage('Time is up!');
+            setInputWord('');
       }
   }, [timeLeft]);
   
@@ -77,8 +50,8 @@ const IndexPage: React.FC = () => {
   
   const addLetter = (type: string) => {
       if (letters.length >= 9) {
-          setMessage('You already have 9 letters.');
-          return;
+            setMessage('You already have 9 letters.');
+            return;
       }
   
       let newLetter;
@@ -91,13 +64,13 @@ const IndexPage: React.FC = () => {
     }
 
     const playGame = () => {
-      setLetters('');
-      setInputWord('');
-      setMessage('');
-      setTimeLeft(30); 
+        setLetters('');
+        setInputWord('');
+        setMessage('');
+        setTimeLeft(30); 
       if (countdownInterval) {
-          clearInterval(countdownInterval);
-          setCountdownInterval(null);
+            clearInterval(countdownInterval);
+            setCountdownInterval(null);
       }
     }
 
@@ -163,7 +136,7 @@ const IndexPage: React.FC = () => {
       <MainContainer>
         <Clock timeLeft={timeLeft} />
         <p>Time left: {timeLeft} seconds</p>
-        <h1>Countdown Conundrum Game</h1>
+        <h1>Countdown Conundrum</h1>
         <LetterBoxes>
             {Array(9).fill('').map((_, i) => (
                 <LetterBox key={i}>
@@ -171,12 +144,13 @@ const IndexPage: React.FC = () => {
                 </LetterBox>
             ))}
         </LetterBoxes>
-        <button onClick={() => addLetter('vowel')}>Add Vowel</button>
-        <button onClick={() => addLetter('consonant')}>Add Consonant</button>
+        <ButtonWrapper><Button onClick={() => addLetter('vowel')}>Add Vowel</Button></ButtonWrapper>
+        <ButtonWrapper><Button onClick={() => addLetter('consonant')}>Add Consonant</Button></ButtonWrapper>
         <input type="text" value={inputWord} onChange={e => setInputWord(e.target.value)} placeholder="Enter your word here" />
-        <button onClick={checkWord} disabled={letters.length < 9}>Submit</button>
-        <button onClick={playGame}>New Game</button>
+        <ButtonWrapper><Button onClick={checkWord} disabled={letters.length < 9}>Submit</Button></ButtonWrapper>
+        <ButtonWrapper><Button onClick={playGame}>New Game</Button></ButtonWrapper>
         <p>{message}</p>
+        <Footer />
       </MainContainer>
     );
 };
