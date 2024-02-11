@@ -76,7 +76,8 @@ const NumbersGame: React.FC<NumbersGameProps> = ({
 				type="text"
 				value={playerSolution}
 				onChange={handleInputChange}
-				placeholder="Enter your solution here"
+				placeholder="Solution displayed here"
+				disabled
 			/>
 			<ButtonWrapper>
 				<Button onClick={revealSolution}>Reveal Solution</Button>
