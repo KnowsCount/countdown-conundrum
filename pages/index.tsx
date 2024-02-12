@@ -152,7 +152,7 @@ const IndexPage: React.FC = () => {
 		} else if (!canFormWordFromLetters(inputWord, letters)) {
 			setMessage('Your word contains letters not in the given set.')
 		} else if (!wordList.includes(inputWord)) {
-			setMessage(`Sorry, ${inputWord} is not a valid word.`)
+			setMessage(`Sorry, ${inputWord} is not a valid word; ${longestWord} is—it is also the longest possible.`)
 		} else {
 			if (inputWord.length === longestWord.length) {
 				setMessage(
