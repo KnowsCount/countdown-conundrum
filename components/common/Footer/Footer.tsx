@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import RulesModal from './RulesModal'
+import { RulesModal } from '@/components/common/RulesModal'
 import { FooterContainer, SocialLinks, RulesButton } from './Footer.style'
-
 
 const Footer: React.FC = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)

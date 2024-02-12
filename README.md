@@ -1,8 +1,4 @@
-a web version of 8/10 cat does countdown conundrum.
-
-## Getting Started
-
-First, run the development server:
+a web version of 8/10 cat does countdown conundrum. includes both the words game and numbers game.
 
 ```bash
 npm run dev
@@ -13,5 +9,3 @@ pnpm dev
 # or
 bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
