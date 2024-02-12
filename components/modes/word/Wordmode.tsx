@@ -29,7 +29,7 @@ const WordsGame: React.FC<{
 			<input
 				type="text"
 				value={inputWord}
-				onChange={(e) => setInputWord(e.target.value)}
+				onChange={(e) => setInputWord(e.target.value.toUpperCase())}
 				placeholder="Enter your word here"
 			/>
 			<ButtonWrapper>

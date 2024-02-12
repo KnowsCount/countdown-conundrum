@@ -43,6 +43,7 @@ const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onRequestClose }) => {
 					The player is given a 30 second countdown in which they are
 					supposed to work out the calculation to the final result.
 				</p>
+				<hr />
 				<p>
 					The two games are derived from the hilarious panel show 8
 					Out of 10 Cats Does Countdown. Give it a watch. Good luck

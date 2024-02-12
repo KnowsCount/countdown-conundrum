@@ -21,10 +21,12 @@ const IndexPage: React.FC = () => {
 	}
 
 	useEffect(() => {
-		fetch('https://random-word-api.herokuapp.com/all')
+		// fetch('https://random-word-api.herokuapp.com/all')
+		fetch('https://raw.githubusercontent.com/DMRobertson/conundrum/gh-pages/words.json')
 			.then((response) => response.json())
 			.then((data) => {
-				setWordList(data)
+				console.log(data)
+				setWordList(data.words)
 			})
 	}, [])
 
@@ -45,12 +47,12 @@ const IndexPage: React.FC = () => {
 	}, [timeLeft])
 
 	const generateRandomVowel = () => {
-		const vowels = 'aeiou'
+		const vowels = 'AEIOU'
 		return vowels[Math.floor(Math.random() * vowels.length)]
 	}
 
 	const generateRandomConsonant = () => {
-		const consonants = 'bcdfghjklmnpqrstvwxyz'
+		const consonants = 'BCDFGHJKLMNPQRSTVWXYZ'
 		return consonants[Math.floor(Math.random() * consonants.length)]
 	}
 
